@@ -56,6 +56,7 @@
     "prettier": "3.3.3",
     "tailwind-variants": "0.3.0",
     "tailwindcss": "3.4.16",
+    "tailwindcss-motion": "^1.1.0",
     "typescript": "5.6.3"
   }
 }

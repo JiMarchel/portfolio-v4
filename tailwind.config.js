@@ -1,4 +1,5 @@
-import {heroui} from "@heroui/theme"
+import tailwindcssMotion from "tailwindcss-motion";
+import { heroui } from "@heroui/theme"
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -16,7 +17,7 @@ const config = {
     },
   },
   darkMode: "class",
-  plugins: [heroui()],
+  plugins: [heroui(), tailwindcssMotion],
 }
 
 module.exports = config;
