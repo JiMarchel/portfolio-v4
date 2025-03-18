@@ -1,4 +1,6 @@
+import { Folder, Clock, Smile } from "lucide-react";
 export type SiteConfig = typeof siteConfig;
+
 
 export const siteConfig = {
   name: "JiMarchel",
@@ -6,14 +8,17 @@ export const siteConfig = {
   navItems: [
     {
       label: "Projects",
+      icon: Folder,
       href: "/",
     },
     {
       label: "Now",
+      icon: Clock,
       href: "/now",
     },
     {
       label: "About",
+      icon: Smile,
       href: "/about",
     },
   ],
