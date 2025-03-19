@@ -8,6 +8,7 @@ import { useIsSSR } from "@react-aria/ssr";
 import clsx from "clsx";
 
 import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
+import { Tooltip } from "@heroui/react";
 
 export interface ThemeSwitchProps {
   className?: string;
@@ -70,11 +71,14 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
           ),
         })}
       >
-        {!isSelected || isSSR ? (
-          <SunFilledIcon size={22} />
-        ) : (
-          <MoonFilledIcon size={22} />
-        )}
+        <Tooltip content="Change theme" placement="bottom">
+          {!isSelected || isSSR ? (
+            <SunFilledIcon size={22} />
+          ) : (
+            <MoonFilledIcon size={22} />
+          )}
+
+        </Tooltip>
       </div>
     </Component>
   );

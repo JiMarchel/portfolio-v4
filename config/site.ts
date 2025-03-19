@@ -22,39 +22,45 @@ export const siteConfig = {
       href: "/about",
     },
   ],
-  navMenuItems: [
+  listProjects: [
     {
-      label: "Profile",
-      href: "/profile",
+      title: "KKN-Bmi",
+      description: "A bmi calculator that I made to calculate the ideal weight of people in Sumbersuko village",
+      github: "https://github.com/JiMarchel/kkn-bmi",
+      live: "https://bmi-sumbersuko.vercel.app/",
     },
     {
-      label: "Dashboard",
-      href: "/dashboard",
+      title: "Al-Quran",
+      description: "A website for reading the Al-Quran and short surahs",
+      github: "https://github.com/JiMarchel/alquran",
+      live: "https://alquran-035.vercel.app/",
     },
     {
-      label: "Projects",
-      href: "/projects",
+      title: "MyKartunList",
+      description: "MyAnimeList lite, Build this with NextJs and use NextUi for ui components. Data API from jikan.moe",
+      github: "https://github.com/JiMarchel/MyKartunList",
+      live: "https://mykartunlist.vercel.app",
     },
     {
-      label: "Team",
-      href: "/team",
+      title: "TMDB-Movie",
+      description: "A movie collection website where you can view information about the movie. API from TMDb",
+      github: "https://github.com/JiMarchel/tmdb-movie",
+      live: "https://tmdb-mymy.vercel.app",
+    },
+
+    {
+      title: "HooBank UI",
+      description: "Slicing design with Reactjs and Tailwind from following JSMastery course.",
+      github: "https://github.com/JiMarchel/HooBank",
+      live: "https://keen-arithmetic-8a9459.netlify.app/",
     },
     {
-      label: "Calendar",
-      href: "/calendar",
+      title: "Taskify",
+      description: "Taskify, the Trello clone i made from following @CodeWIthAntonio Course. learn so much from this course.",
+      github: "https://github.com/JiMarchel/Taskify",
+      live: null,
     },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
-    },
+
   ],
   links: {
     github: "https://github.com/heroui-inc/heroui",

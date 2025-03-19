@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Link, useDisclosure } from "@heroui/react"
+import { Button, Link, Tooltip, useDisclosure } from "@heroui/react"
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -44,7 +44,9 @@ export const Navbar = () => {
           </ul>
 
           <div className="sm:hidden">
-            <Button isIconOnly variant="light" onPress={onOpen} radius="full"><LayoutDashboard /></Button>
+            <Tooltip content="Navigation Menu" placement="bottom">
+              <Button isIconOnly variant="light" onPress={onOpen} radius="full"><LayoutDashboard /></Button>
+            </Tooltip>
             <Drawer isOpen={isOpen} onOpenChange={onOpenChange} placement="bottom">
               <DrawerContent>
                 {(onClose) => (

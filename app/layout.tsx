@@ -7,6 +7,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: {
@@ -46,10 +47,7 @@ export default function RootLayout({
             <main className="container mx-auto max-w-3xl pt-16 px-6 flex-grow">
               {children}
             </main>
-            <footer className="w-full flex items-center justify-center py-3 gap-1">
-              <span className="text-default-600">Made with ❤️ and ☕ in</span>
-              <p className="text-danger-500">Indonesia.</p>
-            </footer>
+            <Footer />
           </div>
         </Providers>
       </body>
