@@ -22,13 +22,13 @@ function Projects() {
       <div className="flex flex-col gap-8 text-3xl sm:text-6xl font-bold mb-10 sm:mb-20">
         <div className="flex flex-wrap gap-4 items-center">
           <span className="motion-translate-x-loop-0 motion-rotate-loop-12 motion-duration-1500">👋</span>
-          <h1>Haiiii, i'm</h1>
+          <h1>Haiiii, i&apos;m</h1>
           <h1 className={`${funSized.className} bg-purple-800 py-2 px-3 rounded-md`}>Jimmy</h1>
         </div>
 
         <div className="text-xl sm:text-2xl">
           <p className="inline-block">
-            I'm a software developer based in {" "}
+            I&apos;m a software developer based in {" "}
             <span className="inline-flex align-middle mx-1">
               <Tooltip content={<VideoContent video="/indonesia.mp4" />} placement="bottom">
                 <Image
