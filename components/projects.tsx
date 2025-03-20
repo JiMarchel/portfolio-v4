@@ -6,7 +6,7 @@ import { VideoContent } from "./video-content"
 import { siteConfig } from "@/config/site"
 import { useState } from "react"
 import { GithubIcon } from "./icons"
-import { Globe, Globe2 } from "lucide-react"
+import { Globe } from "lucide-react"
 
 function Projects() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -50,20 +50,23 @@ function Projects() {
         <div className="space-y-3">
           {currentItems.map((v, i) => (
             <div key={i}>
-              <h1 className={`${lilitaOne.className} text-2xl sm:text-3xl  motion-preset-blur-right   border-b-2 w-fit`}>{v.title}</h1>
-              <div className="flex my-2 gap-1">
-                {v.github !== null ? (
-                  <Tooltip content="Source code of the project">
+              <div className="flex items-center justify-between my-2 gap-1">
+                <h1 className={`${lilitaOne.className} text-2xl sm:text-3xl  motion-preset-blur-right   border-b-2 w-fit`}>{v.title}</h1>
+                <div className="space-x-2">
+                  {v.github !== null ? (
+                    <Tooltip content="Source code of the project">
 
-                    <Button size="sm" as={Link} href={v.github} color="secondary" variant="flat" startContent={<GithubIcon size={16} />} target="_blank">Github</Button>
-                  </Tooltip>
-                ) : null}
-                {v.live !== null ? (
-                  <Tooltip content="View the web directly">
+                      <Button size="sm" as={Link} href={v.github} color="secondary" variant="flat" startContent={<GithubIcon size={16} />} target="_blank">Github</Button>
+                    </Tooltip>
+                  ) : null}
+                  {v.live !== null ? (
+                    <Tooltip content="View the web directly">
 
-                    <Button size="sm" as={Link} href={v.github} color="secondary" variant="flat" startContent={<Globe size={16} />} target="_blank">Live website</Button>
-                  </Tooltip>
-                ) : null}
+                      <Button size="sm" as={Link} href={v.github} color="secondary" variant="flat" startContent={<Globe size={16} />} target="_blank">Live website</Button>
+                    </Tooltip>
+                  ) : null}
+
+                </div>
               </div>
               <p className="font-medium text-xl motion-preset-fade ">{v.description}</p>
             </div>
