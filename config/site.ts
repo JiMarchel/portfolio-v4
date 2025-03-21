@@ -60,7 +60,42 @@ export const siteConfig = {
       github: "https://github.com/JiMarchel/Taskify",
       live: null,
     },
-
+  ],
+  newAt: [
+    {
+      title: "Rust",
+      image: "/rust.jpg"
+    },
+    {
+      title: "Docker",
+      image: "/docker.png"
+    }
+  ],
+  masterAt: [
+    {
+      title: "Typescript",
+      image: "/ts.png"
+    },
+    {
+      title: "NodeJS",
+      image: "/nodejs.jpg"
+    },
+    {
+      title: "NextJS",
+      image: "/nextjs.png"
+    },
+    {
+      title: "Bun",
+      image: "/bun.jpg"
+    },
+    {
+      title: "Relational Database",
+      image: "/database.jpg"
+    },
+    {
+      title: "Linux",
+      image: "linux.png"
+    }
   ],
   links: {
     github: "https://github.com/heroui-inc/heroui",

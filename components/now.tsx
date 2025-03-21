@@ -1,3 +1,6 @@
+"use client"
+import { siteConfig } from '@/config/site'
+import { Card, CardBody, CardFooter, Image } from '@heroui/react'
 import React from 'react'
 
 export const Now = () => {
@@ -10,13 +13,36 @@ export const Now = () => {
           <p>Now i&apos;m interested in learning and exploring Rust.</p>
           <p>Will probably study blockchain and cryptocurrencies later, or maybe cybersecurity?</p>
         </div>
+        <p className='font-thin text-medium sm:text-xl'>Last updated March 2025</p>
       </div>
 
       <div className='space-y-3'>
-        <h1 className='font-bold text-3xl sm:text-5xl'>New at</h1>
-        <div>
-
+        <h1 className='font-bold text-2xl sm:text-4xl'>New at</h1>
+        <div className='gap-2 sm:gap-4 grid grid-cols-2 sm:grid-cols-3'>
+          {siteConfig.newAt.map((v, i) => (
+            <Card key={i} isPressable shadow='sm' className='hover:rotate-3 motion-preset-slide-left ' >
+              <CardBody className='w-full'>
+                <Image alt={v.title} src={v.image} width="100%" className='w-full object-cover h-[85px] sm:h-[130px] ' />
+              </CardBody>
+              <CardFooter><b>{v.title}</b></CardFooter>
+            </Card>
+          ))}
         </div>
+      </div>
+
+      <div className='space-y-3'>
+        <h1 className='font-bold text-2xl sm:text-4xl'>Master at</h1>
+        <div className='gap-2 sm:gap-4 grid grid-cols-2 sm:grid-cols-3'>
+          {siteConfig.masterAt.map((v, i) => (
+            <Card key={i} isPressable shadow='sm' className='hover:rotate-3 motion-preset-slide-right '>
+              <CardBody className='w-full'>
+                <Image alt={v.title} src={v.image} width="100%" className='w-full object-cover h-[85px] sm:h-[130px]' />
+              </CardBody>
+              <CardFooter><b >{v.title}</b></CardFooter>
+            </Card>
+          ))}
+        </div>
+
       </div>
     </div>
   )

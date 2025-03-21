@@ -24,7 +24,7 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <h1 className={`font-bold text-2xl motion-preset-flomoji-🚀  ${barriecito.className}`}>M Jimmy Marchel</h1>
+            <h1 className={`font-bold text-2xl  ${barriecito.className}`}>M Jimmy Marchel</h1>
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
