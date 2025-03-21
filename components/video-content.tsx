@@ -10,7 +10,7 @@ export const VideoContent = ({ video }: VideoContent) => {
         kind="captions"
         srcLang="en"
         label="English"
-        src=""
+        src={undefined}
       />
       Your browser does not support the video tag.
     </video>

@@ -19,10 +19,10 @@ function Projects() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col gap-8 text-3xl sm:text-6xl font-bold mb-10 sm:mb-20">
-        <div className="flex flex-wrap gap-4 items-center">
+      <div className="flex flex-col gap-3 text-3xl sm:text-6xl font-bold mb-10 sm:mb-20">
+        <div className="flex flex-wrap gap-2 items-center">
           <span className="motion-translate-x-loop-0 motion-rotate-loop-12 motion-duration-1500">👋</span>
-          <h1>Haiiii, i&apos;m</h1>
+          <h1>Haii, i&apos;m</h1>
           <h1 className={`${funSized.className} bg-purple-800 py-2 px-3 rounded-md`}>Jimmy</h1>
         </div>
 
@@ -50,7 +50,7 @@ function Projects() {
         <div className="space-y-3">
           {currentItems.map((v, i) => (
             <div key={i}>
-              <div className="flex items-center justify-between my-2 gap-1">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between my-2 gap-1">
                 <h1 className={`${lilitaOne.className} text-2xl sm:text-3xl  motion-preset-blur-right   border-b-2 w-fit`}>{v.title}</h1>
                 <div className="space-x-2">
                   {v.github !== null ? (
@@ -62,7 +62,7 @@ function Projects() {
                   {v.live !== null ? (
                     <Tooltip content="View the web directly">
 
-                      <Button size="sm" as={Link} href={v.github} color="secondary" variant="flat" startContent={<Globe size={16} />} target="_blank">Live website</Button>
+                      <Button size="sm" as={Link} href={v.live} color="secondary" variant="flat" startContent={<Globe size={16} />} target="_blank">Live website</Button>
                     </Tooltip>
                   ) : null}
 
