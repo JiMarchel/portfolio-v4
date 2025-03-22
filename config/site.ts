@@ -97,11 +97,19 @@ export const siteConfig = {
       image: "linux.png"
     }
   ],
+  cert: [
+    {
+      companyName: "Bisa AI",
+      description: "test",
+      image: "",
+      pdf: "",
+    }
+  ],
   links: {
-    github: "https://github.com/heroui-inc/heroui",
-    twitter: "https://twitter.com/hero_ui",
-    docs: "https://heroui.com",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    github: "https://github.com/jimarchel",
+    facebook: "https://www.facebook.com/jimarchel",
+    instagram: "https://www.instagram.com/jimarchel",
+    linkedin: "https://www.linkedin.com/in/jimarchel",
+    email: "jmarchel100@gmail.com",
   },
 };

@@ -13,7 +13,6 @@ export const Now = () => {
           <p>Now i&apos;m interested in learning and exploring Rust.</p>
           <p>Will probably study blockchain and cryptocurrencies later, or maybe cybersecurity?</p>
         </div>
-        <p className='font-thin text-medium sm:text-xl'>Last updated March 2025</p>
       </div>
 
       <div className='space-y-3'>

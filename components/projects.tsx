@@ -46,7 +46,7 @@ function Projects() {
       </div>
 
       <div className="space-y-5 ">
-        <h1 className="font-bold text-3xl sm:text-5xl ">🤘Projects</h1>
+        <h1 className="font-bold text-3xl sm:text-5xl ">🐱‍💻Some of my work</h1>
         <div className="space-y-3">
           {currentItems.map((v, i) => (
             <div key={i}>
@@ -68,7 +68,7 @@ function Projects() {
 
                 </div>
               </div>
-              <p className="font-medium text-xl motion-preset-fade ">{v.description}</p>
+              <p className="font-medium text-lg sm:text-xl motion-preset-fade ">{v.description}</p>
             </div>
           ))}
         </div>
