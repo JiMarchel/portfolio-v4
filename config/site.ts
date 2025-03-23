@@ -99,10 +99,10 @@ export const siteConfig = {
   ],
   cert: [
     {
-      companyName: "Bisa AI",
-      description: "test",
-      image: "",
-      pdf: "",
+      companyName: "Bisa AI Academy",
+      description: "The independent study program that I joined at Bisa AI Academy, I took the cyber security position.",
+      image: "/cert/bisa_ai.png",
+      pdf: "/cert/bisa_ai.pdf",
     }
   ],
   links: {

@@ -1,14 +1,14 @@
 "use client"
 import { lilitaOne } from '@/config/fonts'
-import { Button, ButtonGroup, Image, Link, Popover, PopoverContent, PopoverTrigger, Tooltip } from '@heroui/react'
-import { Facebook, Instagram, Linkedin, Mail } from 'lucide-react'
+import { Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Image, Link, Popover, PopoverContent, PopoverTrigger, Tooltip } from '@heroui/react'
+import { Download, Facebook, Instagram, Linkedin, Mail } from 'lucide-react'
 import React from 'react'
 import { GithubIcon } from './icons'
 import { siteConfig } from '@/config/site'
 
 const About = () => {
   return (
-    <div>
+    <div className='space-y-12'>
       <div className='flex flex-col gap-4'>
         <div className='flex gap-2'>
           <h1 className='font-bold text-2xl sm:text-4xl '>Haiii again, I&apos;m
@@ -47,6 +47,36 @@ const About = () => {
             </Tooltip>
           </ButtonGroup>
         </div>
+      </div>
+
+      <div className='space-y-3'>
+        <h1 className='font-bold text-2xl sm:text-4xl'>Cert</h1>
+        <div className='grid grid-cols-2'>
+          {siteConfig.cert.map((v, i) => (
+            <Card key={i} isPressable shadow='sm'>
+              <CardHeader>
+                <Image
+                  alt={v.companyName}
+                  className="wobject-cover h-auto w-auto"
+                  radius="lg"
+                  shadow="sm"
+                  src={v.image}
+                />
+              </CardHeader>
+              <CardBody >
+                <h4 className='font-medium sm:font-bold text-lg sm:text-xl'>{v.companyName}</h4>
+              </CardBody>
+              <CardFooter className='grid gap-1'>
+                <p className='text-start text-sm sm:text-lg'>{v.description}</p>
+                <Button as={Link} variant='flat' size='sm' startContent={<Download size={14} />} target='_blank' href={v.pdf} download={`${v.companyName} - Moch Jimmy Marchel`} className=''>PDF</Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <iframe src="https://open.spotify.com/embed/artist/6YVMFz59CuY7ngCxTxjpxE?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
     </div>
   )
