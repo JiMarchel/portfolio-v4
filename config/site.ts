@@ -6,7 +6,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "JiMarchel",
-  description: "Make beautiful websites regardless of your design experience.",
+  description: "Mochammad Jimmy Marchel Personal Website Portofolio",
   navItems: [
     {
       label: "Projects",
