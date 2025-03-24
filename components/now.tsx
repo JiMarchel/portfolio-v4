@@ -35,7 +35,7 @@ export const Now = () => {
           {siteConfig.masterAt.map((v, i) => (
             <Card key={i} isPressable shadow='sm' className='hover:rotate-3 motion-preset-slide-right '>
               <CardBody className='w-full'>
-                <Image alt={v.title} src={v.image} width="100%" className='w-full object-cover h-[85px] sm:h-[130px]' />
+                <Image alt={v.title} src={v.image} width="100%" className='w-full object-center h-[85px] sm:h-[130px]' />
               </CardBody>
               <CardFooter><b >{v.title}</b></CardFooter>
             </Card>

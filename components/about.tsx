@@ -1,5 +1,5 @@
 "use client"
-import { lilitaOne } from '@/config/fonts'
+import { lilitaOne, rowdies } from '@/config/fonts'
 import { Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Image, Link, Popover, PopoverContent, PopoverTrigger, Tooltip } from '@heroui/react'
 import { Download, Facebook, Instagram, Linkedin, Mail } from 'lucide-react'
 import React from 'react'
@@ -57,7 +57,7 @@ const About = () => {
               <CardHeader>
                 <Image
                   alt={v.companyName}
-                  className="wobject-cover h-auto w-auto"
+                  className="object-cover h-auto w-auto"
                   radius="lg"
                   shadow="sm"
                   src={v.image}
@@ -75,8 +75,20 @@ const About = () => {
         </div>
       </div>
 
-      <div>
-        <iframe src="https://open.spotify.com/embed/artist/6YVMFz59CuY7ngCxTxjpxE?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <div className='space-y-3'>
+        <h1 className='font-bold text-2xl sm:text-4xl'>Listening</h1>
+        <div className='grid grid-cols-2 sm:grid-cols-3 gap-2'>
+          {siteConfig.listening.map((v, i) => (
+            <Card key={i} shadow='lg' as={Link} href={v.link} target="_blank" className='-rotate-3 hover:rotate-0'>
+              <CardBody>
+                <Image src={v.image} alt={v.title} className='object-cover h-auto w-auto' />
+              </CardBody>
+              <CardFooter className={`${rowdies.className}`}>
+                {v.title}
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   )

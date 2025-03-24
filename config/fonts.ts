@@ -1,5 +1,5 @@
 import localFont from "next/font/local"
-import { Fira_Code as FontMono, Source_Sans_3 as FontSans, Barriecito, Press_Start_2P, Rubik_Burned, Grape_Nuts, Lilita_One } from "next/font/google";
+import { Fira_Code as FontMono, Source_Sans_3 as FontSans, Barriecito, Press_Start_2P, Rubik_Burned, Grape_Nuts, Lilita_One, Rowdies } from "next/font/google";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -38,6 +38,12 @@ export const grapeNuts = Grape_Nuts({
 export const lilitaOne = Lilita_One({
   subsets: ["latin"],
   variable: "--lilita-one",
+  weight: "400"
+})
+
+export const rowdies = Rowdies({
+  subsets: ["latin"],
+  variable: "--rowdies",
   weight: "400"
 })
 

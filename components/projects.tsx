@@ -1,22 +1,13 @@
 "use client"
-import { funSized, grapeNuts, lilitaOne } from "@/config/fonts"
-import { Button, Link, Tooltip } from "@heroui/react"
+import { funSized } from "@/config/fonts"
+import { Button, Link, Popover, PopoverContent, PopoverTrigger, Tooltip } from "@heroui/react"
 import Image from "next/image"
 import { VideoContent } from "./video-content"
 import { siteConfig } from "@/config/site"
-import { useState } from "react"
 import { GithubIcon } from "./icons"
-import { Globe } from "lucide-react"
+import { Download, Globe } from "lucide-react"
 
 function Projects() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-
-  const totalPages = Math.ceil(siteConfig.listProjects.length / itemsPerPage);
-
-  const currentItems = siteConfig.listProjects.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-
-
   return (
     <div className="flex flex-col">
       <div className="flex flex-col gap-3 text-3xl sm:text-6xl font-bold mb-10 sm:mb-20">
@@ -47,53 +38,29 @@ function Projects() {
 
       <div className="space-y-5 ">
         <h1 className="font-bold text-3xl sm:text-5xl ">🐱‍💻Some of my work</h1>
-        <div className="space-y-3">
-          {currentItems.map((v, i) => (
-            <div key={i}>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between my-2 gap-1">
-                <h1 className={`${lilitaOne.className} text-2xl sm:text-3xl  motion-preset-blur-right   border-b-2 w-fit`}>{v.title}</h1>
-                <div className="space-x-2">
-                  {v.github !== null ? (
-                    <Tooltip content="Source code of the project">
-
+        <div className="flex gap-2 flex-wrap">
+          {siteConfig.listProjects.map((v, i) => (
+            <Popover key={i} placement="bottom">
+              <PopoverTrigger>
+                <Button variant="flat" startContent={<span className="border-r pr-1 border-slate-600 sm:pr-3"><v.icon /></span>} className="sm:p-7 sm:font-semibold sm:text-xl "> <span className="w-full border-b hover:border-none">{v.title}</span></Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="px-1 py-2 max-w-sm">
+                  <p className="text-small sm:text-lg font-bold">{v.title}</p>
+                  <p className="text-tiny sm:text-medium">{v.description}</p>
+                  <div className="space-x-2 mt-1">
+                    {v.github !== null ? (
                       <Button size="sm" as={Link} href={v.github} color="secondary" variant="flat" startContent={<GithubIcon size={16} />} target="_blank">Github</Button>
-                    </Tooltip>
-                  ) : null}
-                  {v.live !== null ? (
-                    <Tooltip content="View the web directly">
-
+                    ) : null}
+                    {v.live !== null ? (
                       <Button size="sm" as={Link} href={v.live} color="secondary" variant="flat" startContent={<Globe size={16} />} target="_blank">Live website</Button>
-                    </Tooltip>
-                  ) : null}
-
+                    ) : null}
+                  </div>
                 </div>
-              </div>
-              <p className="font-medium text-lg sm:text-xl motion-preset-fade ">{v.description}</p>
-            </div>
+              </PopoverContent>
+            </Popover>
           ))}
         </div>
-      </div>
-
-      <div className="mt-5 flex  justify-between">
-        <Button
-          color="secondary"
-          size="sm"
-          variant="flat"
-          onPress={() => setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </Button>
-        <span className={`${grapeNuts.className} mx-2`}>{currentPage} of {totalPages}</span> {/* Tambahkan penanda halaman */}
-        <Button
-          color="secondary"
-          size="sm"
-          variant="flat"
-          onPress={() => setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev))}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </Button>
       </div>
     </div>
   )
