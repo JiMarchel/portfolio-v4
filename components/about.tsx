@@ -47,6 +47,12 @@ const About = () => {
             </Tooltip>
           </ButtonGroup>
         </div>
+        <div >
+          <p className='font-bold text-lg sm:text-xl'>CV</p>
+          <Tooltip content="My CV" placement='bottom-start'>
+            <Button startContent={<Download />} color='secondary' variant='flat' as={Link} target='_blank' href='/CV.pdf' download="Mochammad Jimmy Marchel - CV">Download CV</Button>
+          </Tooltip>
+        </div>
       </div>
 
       <div className='space-y-3'>
