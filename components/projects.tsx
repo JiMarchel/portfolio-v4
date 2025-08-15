@@ -33,7 +33,6 @@ export const Projects = () => {
                 }
                 className="sm:p-7 sm:font-semibold sm:text-xl "
               >
-                {" "}
                 <span className="w-full border-b hover:border-none">
                   {v.title}
                 </span>
