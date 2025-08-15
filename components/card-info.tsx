@@ -1,6 +1,6 @@
 "use client";
 import { ChevronRight } from "lucide-react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
 const truncateText = (text: string, maxLength: number) => {
@@ -11,7 +11,7 @@ const truncateText = (text: string, maxLength: number) => {
 interface CardInfoInterface {
   href: string;
   title: string;
-  image: string;
+  image: StaticImageData;
   date: string;
   description: string;
 }
@@ -26,7 +26,7 @@ export const CardInfo = ({
   return (
     <Link href={href} className="group" target="_blank">
       <div className="flex items-center gap-2">
-        <Image src={image} alt={image} className="h-7 w-7 sm:h-9 sm:w-10" width={400} height={400}/>
+        <Image src={image} alt={title} className="h-7 w-7 sm:h-9 sm:w-10" width={400} height={400}/>
         <div className="flex justify-between w-full">
           <div>
             <div className="flex items-center">
