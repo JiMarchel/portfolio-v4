@@ -1,18 +1,37 @@
-"use client"
+"use client";
 
-import { Tooltip } from "@heroui/react"
-import { VideoContent } from "./video-content"
+import { Tooltip } from "@heroui/react";
+import { Dock, DockIcon } from "./magicui/dock";
+import { siteConfig } from "@/config/site";
+import Link from "next/link";
+import { Separator } from "./ui/separator";
+import { ThemeSwitch } from "./theme-switch";
 
 export const Footer = () => {
   return (
-    <footer className="mt-5 w-full flex flex-col items-center justify-center py-3 gap-1">
-      <div className="flex items-center gap-1">
-        <span className="text-default-600">Made with ❤️ and ☕ in</span>
-        <Tooltip content={<VideoContent video="/indonesia.mp4" />} placement="top">
-          <p className="text-danger-500 cursor-default">Indonesia🇮🇩.</p>
-        </Tooltip>
-      </div>
-      <p className='font-thin '>Last updated March 2025</p>
-    </footer>
-  )
-}
+    <Dock className="fixed bottom-3 left-1/2 -translate-x-1/2 sm:px-5 rounded-full z-50">
+      {siteConfig.navItems.map((v) => (
+        <DockIcon key={v.label}>
+          <Tooltip content={v.label}>
+            <Link href={v.href}>
+              <v.icon className="size-4" />
+            </Link>
+          </Tooltip>
+        </DockIcon>
+      ))}
+      <Separator orientation="vertical" />
+      {siteConfig.social.map((v) => (
+        <DockIcon key={v.label}>
+          <Tooltip content={v.label}>
+            <Link href={v.href} target="_blank">
+              <v.icon className="size-4" />
+            </Link>
+          </Tooltip>
+        </DockIcon>
+      ))}
+      <Separator orientation="vertical" />
+      <ThemeSwitch />
+    </Dock>
+    // </footer>
+  );
+};
