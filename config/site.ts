@@ -2,6 +2,24 @@ import { HomeIcon, MailIcon, PencilIcon } from "lucide-react";
 import { RiNextjsFill, RiReactjsLine } from "react-icons/ri";
 import { FaGolang, FaRust, FaLinkedin, FaInstagram } from "react-icons/fa6";
 import { GithubIcon } from "@/components/icons";
+import ts from "@/public/typescript.png";
+import node from "@/public/nodejs.png";
+import js from "@/public/javascript.png";
+import next from "@/public/nextjs.png";
+import bun from "@/public/bun.png";
+import html from "@/public/html.png";
+import tailwind from "@/public/tailwind.png";
+import postgres from "@/public/postgres.png";
+import reactjs from "@/public/reactjs.png";
+import linux from "@/public/linux.webp";
+import neovim from "@/public/neovim.png";
+import git from "@/public/git.png";
+import docker from "@/public/docker.png";
+import rust from "@/public/rust.webp";
+import tryhackme from "@/public/tryhackme.png";
+import umsida from "@/public/umsida.png";
+import antrek from "@/public/antrek.png";
+
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
@@ -80,55 +98,55 @@ export const siteConfig = {
     },
   ],
   skills: [
-    { title: "Typescript", image: "/typescript.png" },
-    { title: "NodeJS", image: "/nodejs.png" },
-    { title: "Javascript", image: "/javascript.png" },
-    { title: "NextJS", image: "/nextjs.png" },
-    { title: "Bun", image: "/bun.png" },
-    { title: "HTML", image: "/html.png" },
-    { title: "TailwindCSS", image: "/tailwind.png" },
+    { title: "Typescript", image: ts },
+    { title: "NodeJS", image: node },
+    { title: "Javascript", image: js },
+    { title: "NextJS", image: next },
+    { title: "Bun", image: bun },
+    { title: "HTML", image: html },
+    { title: "TailwindCSS", image: tailwind },
   ],
   toolsAndSkills: [
-    { title: "Postgresql", image: "/postgres.png" },
-    { title: "ReactJS", image: "/reactjs.png" },
-    { title: "Linux", image: "/linux.webp" },
-    { title: "Neovim", image: "/neovim.png" },
-    { title: "Git", image: "/git.png" },
-    { title: "Docker", image: "/docker.png" },
-    { title: "Rust", image: "/rust.webp" },
+    { title: "Postgresql", image: postgres },
+    { title: "ReactJS", image: reactjs },
+    { title: "Linux", image: linux },
+    { title: "Neovim", image: neovim },
+    { title: "Git", image: git },
+    { title: "Docker", image: docker },
+    { title: "Rust", image: rust },
   ],
   cert: [
     {
       title: "TryHackMe",
-      image: "/tryhackme.png",
+      image: tryhackme,
       date: "Issued on 8, 1, 2025",
       description: "Web Application Pentesting",
       href: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-EQ4PIQ13CK.pdf",
     },
     {
       title: "TryHackMe",
-      image: "/tryhackme.png",
+      image: tryhackme,
       date: "Issued on 8, 1, 2025",
       description: "Jr Penetration Tester",
       href: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-CCUDYMUSC9.pdf",
     },
     {
       title: "TryHackMe",
-      image: "/tryhackme.png",
+      image: tryhackme,
       date: "Issued on 7, 22, 2025",
       description: "Web Fundamentals",
       href: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-VJQER3CH1V.pdf",
     },
     {
       title: "TryHackMe",
-      image: "/tryhackme.png",
-      date: " Issued on 7, 18, 2025",
+      image: tryhackme,
+      date: "Issued on 7, 18, 2025",
       description: "Cyber Security 101",
       href: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-TK78DDJRVC.pdf",
     },
     {
       title: "TryHackMe",
-      image: "/tryhackme.png",
+      image: tryhackme,
       date: "Issued on 7, 13, 2025",
       description: "Pre Security",
       href: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-RCBIELIGAX.pdf",
@@ -151,14 +169,14 @@ export const siteConfig = {
   education: [
     {
       title: "Muhammadiyah University of Sidoarjo",
-      image: "/umsida.png",
+      image: umsida,
       date: "2021 - 2025",
       description: "Informatics Engineering",
       href: "https://umsida.ac.id/",
     },
      {
       title: "Antartika 2 Vocational School, Sidoarjo",
-      image: "/antrek.png",
+      image: antrek,
       date: "2019 - 2021",
       description: "Computer and Network Engineering",
       href: "https://smkantartika2-sda.sch.id/",
