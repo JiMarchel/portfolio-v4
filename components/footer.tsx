@@ -32,6 +32,5 @@ export const Footer = () => {
       <Separator orientation="vertical" />
       <ThemeSwitch />
     </Dock>
-    // </footer>
   );
 };
