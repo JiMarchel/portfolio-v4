@@ -27,7 +27,7 @@ export const siteConfig = {
   description: "Mochammad Jimmy Marchel Personal Website Portofolio",
   navItems: [
     { label: "Home", icon: HomeIcon, href: "/" },
-    { label: "Writeup", icon: PencilIcon, href: "/writeup" },
+    { label: "Blog", icon: PencilIcon, href: "/blog" },
   ],
   listProjects: [
     {
