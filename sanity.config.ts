@@ -14,6 +14,8 @@ import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schema } from "./sanity/schemaTypes";
 import { structure } from "./sanity/structure";
 
+const origin = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+
 const previewOrigin = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   : "http://localhost:3000";
@@ -31,6 +33,7 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
     presentationTool({
+      allowOrigins: [origin],
       previewUrl: {
         initial: previewOrigin,
         preview: "/",
