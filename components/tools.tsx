@@ -1,4 +1,3 @@
-"use client";
 import { siteConfig } from "@/config/site";
 import { Marquee } from "./magicui/marquee";
 import Image from "next/image";
@@ -16,9 +15,12 @@ export const Tools = () => {
             <Image
               src={v.image}
               alt={v.title}
-              className="h-7 opacity-70 w-auto"
-              width={30}
-              height={200}
+              width={28}
+              height={28}
+              sizes="28px"
+              loading="lazy"
+              decoding="async"
+              className="opacity-70"
             />
             <p className="text-xl">{v.title}</p>
           </div>
@@ -30,9 +32,12 @@ export const Tools = () => {
             <Image
               src={v.image}
               alt={v.title}
-              className="h-7 opacity-70 w-auto"
-              width={30}
-              height={200}
+              width={28}
+              height={28}
+              sizes="28px"
+              loading="lazy"
+              decoding="async"
+              className="opacity-70"
             />
             <p className="text-xl">{v.title}</p>
           </div>
