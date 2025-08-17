@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
@@ -29,6 +28,7 @@ export const BlogCard = ({
             width={500}
             height={300}
             className="w-auto h-20 object-cover"
+            loading="eager"
           />
           <div>
             <h1 className="sm:text-xl font-medium">{title}</h1>
