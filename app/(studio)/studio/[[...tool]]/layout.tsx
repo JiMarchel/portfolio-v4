@@ -4,6 +4,8 @@ export default function StudioLayout({
   children: React.ReactNode;
 }) {
   return (
-      <div>{children}</div>
+    <html lang="en">
+      <body>{children}</body>
+    </html>
   );
 }
