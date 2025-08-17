@@ -1,7 +1,5 @@
 import { BlogCard } from "@/components/blog-card";
-import { CategoryParams } from "@/components/category-params";
 import SelectCategory from "@/components/select-category";
-import { Badge } from "@/components/ui/badge";
 import { sanityFetch } from "@/sanity/lib/live";
 import {
   GET_ALL_CATEGORIES,
@@ -45,15 +43,6 @@ export default async function BlogPage({ searchParams }: PageProps) {
 
   return (
     <div className="h-full w-full mx-auto">
-      {/* <CategoryParams />
-
-      <div className="flex flex-wrap gap-1 mb-4">
-        {categories.map((v) => (
-          <Badge key={v._id} title={v.slug!}>
-            {v.title}
-          </Badge>
-        ))}
-      </div> */}
       <SelectCategory initialTags={categories.map((v) => v.slug!)} />
 
       <div className="flex flex-col gap-3">
