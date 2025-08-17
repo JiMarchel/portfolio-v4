@@ -28,6 +28,7 @@ const components: PortableTextComponents = {
             width={Math.min(1200, Math.round(width))}
             height={Math.round(height * Math.min(1200 / width, 1))}
             className="rounded-2xl"
+            loading='eager'
           />
           {value.alt && (
             <figcaption className="text-sm text-zinc-500 mt-2">{value.alt}</figcaption>
