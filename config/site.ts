@@ -24,7 +24,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "JiMarchel",
-  description: "Mochammad Jimmy Marchel Personal Website Portofolio",
+  description: "Moch Jimmy Marchel Personal Website Portofolio",
   navItems: [
     { label: "Home", icon: HomeIcon, href: "/" },
     { label: "Blog", icon: PencilIcon, href: "/blog" },
@@ -35,7 +35,6 @@ export const siteConfig = {
       description:
         "A bmi calculator that I made to calculate the ideal weight of people in Sumbersuko village",
       github: "https://github.com/JiMarchel/kkn-bmi",
-      // live: "https://bmi-sumbersuko.vercel.app/",
       live: null,
       icon: RiNextjsFill,
     },
@@ -43,7 +42,6 @@ export const siteConfig = {
       title: "Al-Quran",
       description: "A website for reading the Al-Quran and short surahs",
       github: "https://github.com/JiMarchel/alquran",
-      // live: "https://alquran-035.vercel.app/",
       live: null,
       icon: RiNextjsFill,
     },
@@ -52,7 +50,6 @@ export const siteConfig = {
       description:
         "MyAnimeList lite, Build this with NextJs and use NextUi for ui components. Data API from jikan.moe",
       github: "https://github.com/JiMarchel/MyKartunList",
-      // live: "https://mykartunlist.vercel.app",
       live: null,
       icon: RiNextjsFill,
     },
@@ -61,7 +58,6 @@ export const siteConfig = {
       description:
         "A movie collection website where you can view information about the movie. API from TMDb",
       github: "https://github.com/JiMarchel/tmdb-movie",
-      // live: "https://tmdb-mymy.vercel.app",
       live: null,
       icon: RiNextjsFill,
     },
@@ -84,7 +80,6 @@ export const siteConfig = {
       description:
         "Slicing design with Reactjs and Tailwind from following JSMastery course.",
       github: "https://github.com/JiMarchel/HooBank",
-      // live: "https://keen-arithmetic-8a9459.netlify.app/",
       live: null,
       icon: RiReactjsLine,
     },
