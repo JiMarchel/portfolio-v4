@@ -1,15 +1,10 @@
-"use client";
-
 import { siteConfig } from "@/config/site";
-import {
-  Button,
-  Link,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@heroui/react";
 import { GithubIcon } from "./icons";
 import { Globe } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import Link from "next/link";
+import { ShinyButton } from "./magicui/shiny-button";
+import { Separator } from "./ui/separator";
 
 export const Projects = () => {
   return (
@@ -22,52 +17,42 @@ export const Projects = () => {
       </div>
       <div className="flex gap-2 flex-wrap">
         {siteConfig.listProjects.map((v, i) => (
-          <Popover key={i} placement="bottom">
-            <PopoverTrigger>
-              <Button
-                variant="flat"
-                startContent={
-                  <span className="border-r pr-1 border-slate-600 sm:pr-3">
-                    <v.icon />
-                  </span>
-                }
-                className="sm:p-7 sm:font-semibold sm:text-xl "
-              >
-                <span className="w-full border-b hover:border-none">
-                  {v.title}
+          <Popover key={i}>
+            <PopoverTrigger asChild>
+              <ShinyButton className="sm:px-4 sm:py-3">
+                <span>
+                  <v.icon />
                 </span>
-              </Button>
+                {v.title}
+              </ShinyButton>
             </PopoverTrigger>
             <PopoverContent>
-              <div className="px-1 py-2 max-w-sm">
-                <p className="text-small sm:text-lg font-bold">{v.title}</p>
-                <p className="text-tiny sm:text-medium">{v.description}</p>
+              <div className=" max-w-sm">
+                <h1 className="text-small sm:text-lg font-bold">{v.title}</h1>
+                <p className="text-sm sm:text-medium text-muted-foreground">
+                  {v.description}
+                </p>
+                <Separator className="my-2" />
                 <div className="space-x-2 mt-1">
                   {v.github !== null ? (
-                    <Button
-                      size="sm"
-                      as={Link}
+                    <Link
                       href={v.github}
-                      color="secondary"
-                      variant="flat"
-                      startContent={<GithubIcon size={16} />}
                       target="_blank"
+                      className="text-sm flex items-center hover:underline"
                     >
+                      <GithubIcon className="mr-1 size-5" />
                       Github
-                    </Button>
+                    </Link>
                   ) : null}
                   {v.live !== null ? (
-                    <Button
-                      size="sm"
-                      as={Link}
+                    <Link
                       href={v.live}
-                      color="secondary"
-                      variant="flat"
-                      startContent={<Globe size={16} />}
                       target="_blank"
+                      className="text-sm flex items-center hover:underline"
                     >
+                      <Globe className="mr-1 size-5" />
                       Live website
-                    </Button>
+                    </Link>
                   ) : null}
                 </div>
               </div>
