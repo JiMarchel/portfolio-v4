@@ -1,4 +1,3 @@
-import { Footer } from "@/components/footer";
 import { SanityLive } from "@/sanity/lib/live";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
@@ -8,6 +7,7 @@ import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { ThemeProvider } from "@/components/theme-providers";
+import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: {
@@ -48,7 +48,7 @@ export default async function SiteLayout({
             <SanityLive />
             {(await draftMode()).isEnabled && <VisualEditing />}
           </main>
-          <Footer />
+          <Navbar />
         </ThemeProvider>
       </body>
     </html>
