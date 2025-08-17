@@ -2,12 +2,12 @@ import { Footer } from "@/components/footer";
 import { SanityLive } from "@/sanity/lib/live";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
-import { Providers } from "../providers";
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
+import { ThemeProvider } from "@/components/theme-providers";
 
 export const metadata: Metadata = {
   title: {
@@ -42,14 +42,14 @@ export default async function SiteLayout({
           fontSans.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+        <ThemeProvider defaultTheme="dark" attribute="class">
           <main className="container h-full mx-auto max-w-2xl pt-12 sm:pt-24 px-6 flex-grow">
             {children}
             <SanityLive />
             {(await draftMode()).isEnabled && <VisualEditing />}
           </main>
           <Footer />
-        </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );
