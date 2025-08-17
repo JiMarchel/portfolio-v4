@@ -1,83 +1,34 @@
 "use client";
 
-import { FC } from "react";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
-import { SwitchProps, useSwitch } from "@heroui/switch";
+import { MoonStarIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useIsSSR } from "@react-aria/ssr";
-import clsx from "clsx";
-import { Tooltip } from "@heroui/react";
-import { Moon, Sun } from "lucide-react";
+import { useCallback } from "react";
 
-export interface ThemeSwitchProps {
-  className?: string;
-  classNames?: SwitchProps["classNames"];
-}
+import { Button } from "./ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
-export const ThemeSwitch: FC<ThemeSwitchProps> = ({
-  className,
-  classNames,
-}) => {
-  const { theme, setTheme } = useTheme();
-  const isSSR = useIsSSR();
+export function ThemeSwitch() {
+  const { resolvedTheme, setTheme } = useTheme();
 
-  const onChange = () => {
-    theme === "light" ? setTheme("dark") : setTheme("light");
-  };
-
-  const {
-    Component,
-    slots,
-    isSelected,
-    getBaseProps,
-    getInputProps,
-    getWrapperProps,
-  } = useSwitch({
-    isSelected: theme === "light" || isSSR,
-    "aria-label": `Switch to ${theme === "light" || isSSR ? "dark" : "light"} mode`,
-    onChange,
-  });
+  const handleToggle = useCallback(() => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  }, [resolvedTheme, setTheme]);
 
   return (
-    <Component
-      {...getBaseProps({
-        className: clsx(
-          "px-px transition-opacity hover:opacity-80 cursor-pointer",
-          className,
-          classNames?.base
-        ),
-      })}
-    >
-      <VisuallyHidden>
-        <input {...getInputProps()} />
-      </VisuallyHidden>
-      <div
-        {...getWrapperProps()}
-        className={slots.wrapper({
-          class: clsx(
-            [
-              "w-auto h-auto",
-              "bg-transparent",
-              "rounded-lg",
-              "flex items-center justify-center",
-              "group-data-[selected=true]:bg-transparent",
-              "!text-default-500",
-              "pt-px",
-              "px-0",
-              "mx-0",
-            ],
-            classNames?.wrapper
-          ),
-        })}
-      >
-        <Tooltip content="Change theme" placement="bottom">
-          {!isSelected || isSSR ? (
-            <Sun className="size-5" />
-          ) : (
-            <Moon className="size-5" />
-          )}
-        </Tooltip>
-      </div>
-    </Component>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          onClick={handleToggle}
+          size="icon"
+          variant="outline"
+          className="border-none dark:bg-input/0 dark:hover:bg-input/0 cursor-pointer "
+        >
+          <MoonStarIcon className="hidden [html.dark_&]:block" />
+          <SunIcon className="hidden [html.light_&]:block" />
+          <span className="sr-only">Toggle Theme</span>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Theme Switcher</TooltipContent>
+    </Tooltip>
   );
-};
+}
