@@ -362,7 +362,7 @@ export type POSTS_QUERYResult = Array<{
   }> | null;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  body,                               mainImage{    ...,    "url": asset->url,    "dims": asset->metadata.dimensions  },  "excerpt": select(defined(excerpt) && excerpt != "" => excerpt, defined(body) => pt::text(body)[0...180], ""),  publishedAt,  myCodeField,  categories[]->{ title, "slug": slug.current }}
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  body,                               mainImage{    ...,    "url": asset->url,    "dims": asset->metadata.dimensions  },  "excerpt": select(defined(excerpt) && excerpt != "" => excerpt, defined(body) => pt::text(body)[0...180], ""),  publishedAt,  categories[]->{ title, "slug": slug.current }}
 export type POST_QUERYResult = {
   _id: string;
   title: string | null;
@@ -417,7 +417,6 @@ export type POST_QUERYResult = {
   } | null;
   excerpt: string | null | "";
   publishedAt: string | null;
-  myCodeField: null;
   categories: Array<{
     title: string | null;
     slug: string | null;
@@ -432,6 +431,6 @@ declare module "@sanity/client" {
     "\n*[\n  _type==\"post\" &&\n  count(categories[@->slug.current in $slugs]) == count($slugs)\n]\n| order(publishedAt desc){\n  _id, title, \"slug\": slug.current, publishedAt,\n  \"excerpt\": select(\n    defined(excerpt) && excerpt != \"\" => excerpt,\n    defined(body) => pt::text(body)[0...180],\n    \"\"\n  ),\n  mainImage{ \"url\": asset->url, \"dims\": asset->metadata.dimensions },\n  categories[]->{ title, \"slug\": slug.current }\n}\n": POSTS_BY_ALL_CATEGORIESResult;
     "\n*[\n  _type==\"post\" &&\n  count(categories[@->slug.current in $slugs]) > 0\n]\n| order(publishedAt desc){\n  _id, title, \"slug\": slug.current,\n  mainImage{ \"url\": asset->url, \"dims\": asset->metadata.dimensions },\n  publishedAt,\n  \"excerpt\": select(defined(excerpt) && excerpt != \"\" => excerpt, defined(body) => pt::text(body)[0...180], \"\"),\n  categories[]->{ title, \"slug\": slug.current }\n}\n": POSTS_BY_ANY_CATEGORYResult;
     "*[_type == \"post\" && defined(slug.current)]\n| order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  mainImage{\n    ...,\n    \"url\": asset->url,\n    \"dims\": asset->metadata.dimensions\n  },\n  publishedAt,\n  categories[]->{ title, \"slug\": slug.current }\n}": POSTS_QUERYResult;
-    "\n*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  body,                             \n  mainImage{\n    ...,\n    \"url\": asset->url,\n    \"dims\": asset->metadata.dimensions\n  },\n  \"excerpt\": select(defined(excerpt) && excerpt != \"\" => excerpt, defined(body) => pt::text(body)[0...180], \"\"),\n  publishedAt,\n  myCodeField,\n  categories[]->{ title, \"slug\": slug.current }\n}\n": POST_QUERYResult;
+    "\n*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  body,                             \n  mainImage{\n    ...,\n    \"url\": asset->url,\n    \"dims\": asset->metadata.dimensions\n  },\n  \"excerpt\": select(defined(excerpt) && excerpt != \"\" => excerpt, defined(body) => pt::text(body)[0...180], \"\"),\n  publishedAt,\n  categories[]->{ title, \"slug\": slug.current }\n}\n": POST_QUERYResult;
   }
 }
