@@ -1,4 +1,3 @@
-"use client";
 import { ChevronRight } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
@@ -26,7 +25,7 @@ export const CardInfo = ({
   return (
     <Link href={href} className="group" target="_blank">
       <div className="flex items-center gap-2">
-        <Image src={image} alt={title} className="h-7 w-7 sm:h-9 sm:w-10" width={400} height={400}/>
+        <Image src={image} alt={title} className="h-7 w-7 sm:h-9 sm:w-10" width={400} height={400} loading="eager"/>
         <div className="flex justify-between w-full">
           <div>
             <div className="flex items-center">
