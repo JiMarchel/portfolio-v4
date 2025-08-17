@@ -19,11 +19,6 @@ export const postType = defineType({
       },
     }),
     defineField({
-      name: "author",
-      type: "reference",
-      to: { type: "author" },
-    }),
-    defineField({
       name: "mainImage",
       type: "image",
       options: {
@@ -40,7 +35,7 @@ export const postType = defineType({
     defineField({
       name: "categories",
       type: "array",
-      of: [defineArrayMember({ type: "reference", to: { type: "category" } })],
+      of: [defineArrayMember({ type: "reference", to: [{ type: "category" }] })],
     }),
     defineField({
       name: "publishedAt",
@@ -50,16 +45,12 @@ export const postType = defineType({
       name: "body",
       type: "blockContent",
     }),
+    defineField({
+      name: "excerpt",
+      type: "text",
+      rows: 3,
+      description: "Optional summary for SEO/social cards",
+      validation: (R) => R.max(240),
+    }),
   ],
-  preview: {
-    select: {
-      title: "title",
-      author: "author.name",
-      media: "mainImage",
-    },
-    prepare(selection) {
-      const { author } = selection;
-      return { ...selection, subtitle: author && `by ${author}` };
-    },
-  },
 });
