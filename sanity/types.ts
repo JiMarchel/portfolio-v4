@@ -13,6 +13,46 @@
  */
 
 // Source: schema.json
+export type Author = {
+  _id: string;
+  _type: "author";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  bio?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
 export type Post = {
   _id: string;
   _type: "post";
@@ -21,12 +61,6 @@ export type Post = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
   mainImage?: {
     asset?: {
       _ref: string;
@@ -81,46 +115,7 @@ export type Post = {
   } | {
     _key: string;
   } & Code>;
-};
-
-export type Author = {
-  _id: string;
-  _type: "author";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  bio?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
+  excerpt?: string;
 };
 
 export type Category = {
@@ -294,16 +289,57 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Post | Author | Category | BlockContent | Code | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Author | Post | Category | BlockContent | Code | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
+// Variable: GET_ALL_CATEGORIES
+// Query: *[_type == "category"] | order(title asc) {  _id,  title,  "slug": slug.current,  description,}
+export type GET_ALL_CATEGORIESResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  description: string | null;
+}>;
+// Variable: POSTS_BY_ALL_CATEGORIES
+// Query: *[  _type=="post" &&  count(categories[@->slug.current in $slugs]) == count($slugs)]| order(publishedAt desc){  _id, title, "slug": slug.current, publishedAt,  "excerpt": select(    defined(excerpt) && excerpt != "" => excerpt,    defined(body) => pt::text(body)[0...180],    ""  ),  mainImage{ "url": asset->url, "dims": asset->metadata.dimensions },  categories[]->{ title, "slug": slug.current }}
+export type POSTS_BY_ALL_CATEGORIESResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  publishedAt: string | null;
+  excerpt: string | null | "";
+  mainImage: {
+    url: string | null;
+    dims: SanityImageDimensions | null;
+  } | null;
+  categories: Array<{
+    title: string | null;
+    slug: string | null;
+  }> | null;
+}>;
+// Variable: POSTS_BY_ANY_CATEGORY
+// Query: *[  _type=="post" &&  count(categories[@->slug.current in $slugs]) > 0]| order(publishedAt desc){  _id, title, "slug": slug.current,  mainImage{ "url": asset->url, "dims": asset->metadata.dimensions },  publishedAt,  "excerpt": select(defined(excerpt) && excerpt != "" => excerpt, defined(body) => pt::text(body)[0...180], ""),  categories[]->{ title, "slug": slug.current }}
+export type POSTS_BY_ANY_CATEGORYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  mainImage: {
+    url: string | null;
+    dims: SanityImageDimensions | null;
+  } | null;
+  publishedAt: string | null;
+  excerpt: string | null | "";
+  categories: Array<{
+    title: string | null;
+    slug: string | null;
+  }> | null;
+}>;
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]| order(publishedAt desc)[0...12]{  _id,  title,  "slug": slug.current,  "excerpt": coalesce(excerpt, pt::text(body)[0...180]),  mainImage{    ...,    "url": asset->url,    "dims": asset->metadata.dimensions  },  publishedAt}
+// Query: *[_type == "post" && defined(slug.current)]| order(publishedAt desc)[0...12]{  _id,  title,  "slug": slug.current,  mainImage{    ...,    "url": asset->url,    "dims": asset->metadata.dimensions  },  publishedAt,  categories[]->{ title, "slug": slug.current }}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: string | null;
-  excerpt: null;
   mainImage: {
     asset?: {
       _ref: string;
@@ -320,9 +356,13 @@ export type POSTS_QUERYResult = Array<{
     dims: SanityImageDimensions | null;
   } | null;
   publishedAt: string | null;
+  categories: Array<{
+    title: string | null;
+    slug: string | null;
+  }> | null;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  body,                               mainImage{    ...,    "url": asset->url,    "dims": asset->metadata.dimensions  },  publishedAt,  myCodeField,}
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  body,                               mainImage{    ...,    "url": asset->url,    "dims": asset->metadata.dimensions  },  publishedAt,  myCodeField,  categories[]->{ title, "slug": slug.current }}
 export type POST_QUERYResult = {
   _id: string;
   title: string | null;
@@ -377,13 +417,20 @@ export type POST_QUERYResult = {
   } | null;
   publishedAt: string | null;
   myCodeField: null;
+  categories: Array<{
+    title: string | null;
+    slug: string | null;
+  }> | null;
 } | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\" && defined(slug.current)]\n| order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  \"excerpt\": coalesce(excerpt, pt::text(body)[0...180]),\n  mainImage{\n    ...,\n    \"url\": asset->url,\n    \"dims\": asset->metadata.dimensions\n  },\n  publishedAt\n}": POSTS_QUERYResult;
-    "\n*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  body,                             \n  mainImage{\n    ...,\n    \"url\": asset->url,\n    \"dims\": asset->metadata.dimensions\n  },\n  publishedAt,\n  myCodeField,\n}\n": POST_QUERYResult;
+    "\n*[_type == \"category\"] | order(title asc) {\n  _id,\n  title,\n  \"slug\": slug.current,\n  description,\n}\n": GET_ALL_CATEGORIESResult;
+    "\n*[\n  _type==\"post\" &&\n  count(categories[@->slug.current in $slugs]) == count($slugs)\n]\n| order(publishedAt desc){\n  _id, title, \"slug\": slug.current, publishedAt,\n  \"excerpt\": select(\n    defined(excerpt) && excerpt != \"\" => excerpt,\n    defined(body) => pt::text(body)[0...180],\n    \"\"\n  ),\n  mainImage{ \"url\": asset->url, \"dims\": asset->metadata.dimensions },\n  categories[]->{ title, \"slug\": slug.current }\n}\n": POSTS_BY_ALL_CATEGORIESResult;
+    "\n*[\n  _type==\"post\" &&\n  count(categories[@->slug.current in $slugs]) > 0\n]\n| order(publishedAt desc){\n  _id, title, \"slug\": slug.current,\n  mainImage{ \"url\": asset->url, \"dims\": asset->metadata.dimensions },\n  publishedAt,\n  \"excerpt\": select(defined(excerpt) && excerpt != \"\" => excerpt, defined(body) => pt::text(body)[0...180], \"\"),\n  categories[]->{ title, \"slug\": slug.current }\n}\n": POSTS_BY_ANY_CATEGORYResult;
+    "*[_type == \"post\" && defined(slug.current)]\n| order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  mainImage{\n    ...,\n    \"url\": asset->url,\n    \"dims\": asset->metadata.dimensions\n  },\n  publishedAt,\n  categories[]->{ title, \"slug\": slug.current }\n}": POSTS_QUERYResult;
+    "\n*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  \"slug\": slug.current,\n  body,                             \n  mainImage{\n    ...,\n    \"url\": asset->url,\n    \"dims\": asset->metadata.dimensions\n  },\n  publishedAt,\n  myCodeField,\n  categories[]->{ title, \"slug\": slug.current }\n}\n": POST_QUERYResult;
   }
 }
