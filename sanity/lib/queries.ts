@@ -65,8 +65,8 @@ export const POST_QUERY = defineQuery(`
     "url": asset->url,
     "dims": asset->metadata.dimensions
   },
+  "excerpt": select(defined(excerpt) && excerpt != "" => excerpt, defined(body) => pt::text(body)[0...180], ""),
   publishedAt,
-  myCodeField,
   categories[]->{ title, "slug": slug.current }
 }
 `);
