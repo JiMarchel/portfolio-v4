@@ -1,37 +1,50 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { POST_QUERY } from "@/sanity/lib/queries";
-import { client } from "@/sanity/lib/client";
 import RichText from "@/components/rich-text";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+import { getPost, getPostSlugs } from "@/lib/get-data";
 
-export const revalidate = 300; 
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const slugs: { slug: string }[] = await client.fetch(
-    `*[_type == "post" && defined(slug.current)]{
-  "slug": slug.current}`,
-    {},
-    {
-      next: { revalidate: 3600, tags: ["post-slugs"] },
-      perspective: "published",
-    }
-  );
+  const slugs = await getPostSlugs();
   return slugs.map(({ slug }) => ({ slug }));
 }
 
-
-export default async function Page({
-  params,
-}: {
+interface PageProps {
   params: Promise<{ slug: string }>;
-}) {
-  const post = await client.fetch(
-    POST_QUERY,
-    { slug: (await params).slug },
-    { perspective: "published", next: { revalidate } }
-  );
+}
+
+
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const post = await getPost((await params).slug);
+  if (!post) return { title: "Not found" };
+
+  return {
+    title: post.title,
+    description: post.excerpt ?? post.title,
+    openGraph: post.mainImage?.url
+      ? {
+          images: [
+            {
+              url: post.mainImage.url,
+              width: 1200,
+              height: 630,
+              alt: post.title,
+            },
+          ],
+        }
+      : undefined,
+  };
+}
+
+export default async function Page({ params }: PageProps) {
+  const post = await getPost((await params).slug);
   if (!post) return notFound();
 
   return (
