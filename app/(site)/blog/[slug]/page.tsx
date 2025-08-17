@@ -17,25 +17,25 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-
-
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const post = await getPost((await params).slug);
-  if (!post) return { title: "Not found" };
+  const p = await getPost((await params).slug);
+  if (!p) return { title: "Not found" };
 
   return {
-    title: post.title,
-    description: post.excerpt ?? post.title,
-    openGraph: post.mainImage?.url
+    title: p.title ?? "Post",
+    description: p.excerpt ?? p.title ?? undefined,
+    openGraph: p.mainImage?.url
       ? {
+          type: "article",
           images: [
             {
-              url: post.mainImage.url,
+              url: p.mainImage.url,
               width: 1200,
               height: 630,
-              alt: post.title,
+              // kirim alt hanya kalau ada string
+              ...(p.title ? { alt: p.title } : {}),
             },
           ],
         }
