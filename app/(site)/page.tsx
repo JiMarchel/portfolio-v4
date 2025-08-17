@@ -4,6 +4,8 @@ import { Education } from "@/components/education";
 import { Projects } from "@/components/projects";
 import { Tools } from "@/components/tools";
 
+export const dynamic = 'force-static';
+
 export default function Home() {
   return (
     <div className="space-y-10 sm:space-y-20 pb-20">
