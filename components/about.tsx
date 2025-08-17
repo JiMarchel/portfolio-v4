@@ -1,6 +1,6 @@
 import { funSized } from "@/config/fonts";
 
-function About() {
+export function About() {
   return (
     <div className="flex flex-col gap-3 text-3xl sm:text-6xl font-bold">
       <div className="flex flex-wrap gap-2 items-center">
@@ -26,4 +26,3 @@ function About() {
   );
 }
 
-export default About;
