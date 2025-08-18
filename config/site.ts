@@ -158,7 +158,7 @@ export const siteConfig = {
     {
       label: "Instagram",
       icon: FaInstagram,
-      href: "https://www.instagram.com/jimarchel",
+      href: "https://www.instagram.com/0xmarchel",
     },
   ],
   education: [
