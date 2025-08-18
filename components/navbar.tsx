@@ -1,3 +1,4 @@
+"use client"
 import { Dock, DockIcon } from "./magicui/dock";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
