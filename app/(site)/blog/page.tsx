@@ -42,12 +42,12 @@ export default async function BlogPage({ searchParams }: PageProps) {
       : mode === "any"
         ? POSTS_BY_ANY_CATEGORY
         : POSTS_BY_ALL_CATEGORIES;
-
+  const groqParams = filteredSlugs.length
+    ? { slugs: filteredSlugs }
+    : undefined;
   const posts = await client.fetch(
     query,
-    {
-      params: filteredSlugs.length ? { slugs: filteredSlugs } : undefined,
-    },
+    groqParams,
     { perspective: "published", next: { revalidate: 3600, tags: ["posts"] } }
   );
 
