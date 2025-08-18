@@ -1,12 +1,14 @@
 import { BlogCard } from "@/components/blog-card";
 import SelectCategory from "@/components/select-category";
-import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import {
   GET_ALL_CATEGORIES,
   POSTS_BY_ALL_CATEGORIES,
   POSTS_BY_ANY_CATEGORY,
   POSTS_QUERY,
 } from "@/sanity/lib/queries";
+
+export const revalidate = 3600;
 
 type PageProps = {
   searchParams: Promise<{ c?: string | string[]; mode?: "all" | "any" }>;
@@ -21,9 +23,14 @@ function normalizeCats(c?: string | string[]) {
 }
 
 export default async function BlogPage({ searchParams }: PageProps) {
-  const { data: categories } = await sanityFetch({
-    query: GET_ALL_CATEGORIES,
-  });
+  const categories = await client.fetch(
+    GET_ALL_CATEGORIES,
+    {},
+    {
+      perspective: "published",
+      next: { revalidate: 3600, tags: ["categories"] },
+    }
+  );
   const requestedSlugs = normalizeCats((await searchParams).c);
   const validSlugs = new Set(categories.map((c) => c.slug));
   const filteredSlugs = requestedSlugs.filter((s) => validSlugs.has(s));
@@ -36,11 +43,15 @@ export default async function BlogPage({ searchParams }: PageProps) {
         ? POSTS_BY_ANY_CATEGORY
         : POSTS_BY_ALL_CATEGORIES;
 
-  const { data: posts } = await sanityFetch({
+  const posts = await client.fetch(
     query,
-    params: filteredSlugs.length ? { slugs: filteredSlugs } : undefined,
-  });
+    {
+      params: filteredSlugs.length ? { slugs: filteredSlugs } : undefined,
+    },
+    { perspective: "published", next: { revalidate: 3600, tags: ["posts"] } }
+  );
 
+  console.log("Posts fetched:", posts);
   return (
     <div className="h-full w-full mx-auto">
       <SelectCategory initialTags={categories.map((v) => v.slug!)} />
