@@ -52,10 +52,10 @@ export default async function BlogPage({ searchParams }: PageProps) {
   );
 
   return (
-    <div className="h-full w-full mx-auto">
+    <div className="h-full w-full mx-auto mb-24">
       <SelectCategory initialTags={categories.map((v) => v.title!)} />
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 ">
         {posts.map((v: any) => (
           <BlogCard
             key={v.slug}
