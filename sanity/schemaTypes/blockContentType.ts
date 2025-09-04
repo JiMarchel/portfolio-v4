@@ -91,7 +91,6 @@ export const blockContentType = defineType({
           { title: "Rust", value: "rust" },
           { title: "Go", value: "go" },
           { title: "Python", value: "python" },
-          { title: "Bash", value: "bash" },
           { title: "JSON", value: "json" },
           { title: "C", value: "c" },
           { title: "C++", value: "cpp" },
