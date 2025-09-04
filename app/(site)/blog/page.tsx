@@ -51,10 +51,9 @@ export default async function BlogPage({ searchParams }: PageProps) {
     { perspective: "published", next: { revalidate: 3600, tags: ["posts"] } }
   );
 
-  console.log("Posts fetched:", posts);
   return (
     <div className="h-full w-full mx-auto">
-      <SelectCategory initialTags={categories.map((v) => v.slug!)} />
+      <SelectCategory initialTags={categories.map((v) => v.title!)} />
 
       <div className="flex flex-col gap-3">
         {posts.map((v: any) => (
