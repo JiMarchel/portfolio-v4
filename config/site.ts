@@ -27,7 +27,7 @@ export const siteConfig = {
   description: "Moch Jimmy Marchel Personal Website Portofolio",
   navItems: [
     { label: "Home", icon: HomeIcon, href: "/" },
-    { label: "Blog", icon: PencilIcon, href: "/blog" },
+    { label: "Writeup", icon: PencilIcon, href: "/blog" },
   ],
   listProjects: [
     {
