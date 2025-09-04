@@ -48,7 +48,7 @@ export default async function Page({ params }: PageProps) {
   if (!post) return notFound();
 
   return (
-    <article className="h-full mx-auto pb-28">
+    <article className="h-full mx-auto pb-28 mb-24">
       <Link className="flex items-center gap-2 mb-4" href="/blog">
         <ChevronLeft className="size-4" /> Back to blog
       </Link>
