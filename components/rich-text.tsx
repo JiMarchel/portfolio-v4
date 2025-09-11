@@ -27,7 +27,7 @@ const components: PortableTextComponents = {
             alt={value.alt || ''}
             width={Math.min(1200, Math.round(width))}
             height={Math.round(height * Math.min(1200 / width, 1))}
-            className="rounded-2xl"
+            className="mx-auto rounded"
             loading='eager'
           />
           {value.alt && (
@@ -45,7 +45,7 @@ const components: PortableTextComponents = {
       const language = (LANG_MAP[rawLang] || rawLang) as any
 
       return (
-        <div className="my-6 overflow-hidden rounded-xl border border-zinc-800">
+        <div className="my-6 overflow-hidden rounded border border-zinc-800">
           {(filename || rawLang) && (
             <div className="flex items-center justify-between px-4 py-2 text-xs border-b border-zinc-800 bg-zinc-950/70">
               <span className="font-mono text-zinc-300">{filename || ''}</span>
@@ -83,7 +83,7 @@ const components: PortableTextComponents = {
       const isExternal = /^https?:\/\//.test(href)
       if (isExternal) {
         return (
-          <a href={href} target="_blank" rel="noopener noreferrer" className="underline">
+          <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-400">
             {children}
           </a>
         )
@@ -91,7 +91,7 @@ const components: PortableTextComponents = {
       return <Link href={href} className="underline">{children}</Link>
     },
     code: ({ children }) => (
-      <code className="px-1 py-0.5 rounded bg-zinc-900 text-zinc-100">{children}</code>
+      <code className="px-1 py-0.5 bg-zinc-900 text-zinc-100">{children}</code>
     ),
   },
 
@@ -99,7 +99,7 @@ const components: PortableTextComponents = {
     h1: ({ children }) => <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>,
     h2: ({ children }) => <h2 className="text-2xl font-semibold mt-8 mb-3">{children}</h2>,
     h3: ({ children }) => <h3 className="text-xl font-semibold mt-6 mb-2">{children}</h3>,
-    normal: ({ children }) => <p className="leading-7 my-4">{children}</p>,
+    normal: ({ children }) => <p className="text-sm sm:text-[1.1rem]">{children}</p>,
     blockquote: ({ children }) => (
       <blockquote className="border-l-4 pl-4 italic text-zinc-600 my-4">{children}</blockquote>
     ),
