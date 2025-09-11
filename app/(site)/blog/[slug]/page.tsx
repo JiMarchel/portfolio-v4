@@ -48,32 +48,46 @@ export default async function Page({ params }: PageProps) {
   if (!post) return notFound();
 
   return (
-    <article className="h-full mx-auto pb-28 mb-24">
-      <Link className="flex items-center gap-2 mb-4" href="/blog">
-        <ChevronLeft className="size-4" /> Back to blog
-      </Link>
-      {post.mainImage?.url && (
-        <Image
-          src={post.mainImage.url}
-          alt={post.title ? post.title : "Cover"}
-          width={1200}
-          height={630}
-          className="rounded-2xl w-auto h-auto mb-4 object-cover mx-auto"
-        />
-      )}
-      <div className="mb-10">
-        <h1 className="text-xl sm:text-4xl font-bold ">{post.title}</h1>
-        <p className="text-muted-foreground">
-          {new Date(
-            post.publishedAt ? post.publishedAt : ""
-          ).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </p>
-      </div>
-      <RichText value={post.body} />
-    </article>
+    <>
+      <article className="h-full mb-28 mt-10">
+        <Link className="flex w-fit items-center mb-4 text-xl" href="/blog">
+          <ChevronLeft className="size-10 ml-10" /> Back
+        </Link>
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-10 text-center ">
+            <h1 className="text-xl sm:text-6xl font-bold ">{post.title}</h1>
+            <p className="text-muted-foreground">
+              {new Date(
+                post.publishedAt ? post.publishedAt : ""
+              ).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+          </div>
+          {post.mainImage?.url && (
+            <Image
+              src={post.mainImage.url}
+              alt={post.title ? post.title : "Cover"}
+              width={1200}
+              height={630}
+              className="rounded-2xl w-auto h-auto mb-4 object-cover mx-auto max-w-2xl"
+            />
+          )}
+        </div>
+
+        <div className="max-w-2xl mx-auto">
+          <RichText value={post.body} />
+        </div>
+
+        <Link
+          className="flex items-center justify-center w-fit mx-auto mt-8 text-blue-400 underline"
+          href="/blog"
+        >
+          Back to all posts
+        </Link>
+      </article>
+    </>
   );
 }
