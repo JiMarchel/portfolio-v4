@@ -43,11 +43,9 @@ export default async function SiteLayout({
         )}
       >
         <ThemeProvider defaultTheme="dark" attribute="class">
-          <main className="container h-full mx-auto max-w-2xl pt-12 sm:pt-24 px-6 flex-grow">
-            {children}
-            <SanityLive />
-            {(await draftMode()).isEnabled && <VisualEditing />}
-          </main>
+          {children}
+          <SanityLive />
+          {(await draftMode()).isEnabled && <VisualEditing />}
           <Navbar />
         </ThemeProvider>
       </body>
