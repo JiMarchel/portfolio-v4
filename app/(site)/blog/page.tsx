@@ -52,7 +52,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
   );
 
   return (
-    <div className="h-full w-full mx-auto mb-24">
+    <div className="h-full w-full mx-auto px-2 mb-24 max-w-2xl">
       <SelectCategory initialTags={categories.map((v) => v.title!)} />
 
       <div className="flex flex-col gap-3 ">
