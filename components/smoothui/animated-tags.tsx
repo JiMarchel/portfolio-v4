@@ -40,7 +40,7 @@ export default function AnimatedTags({
     }
   };
   return (
-    <div className={`flex w-full flex-col gap-4 p-4 ${className}`}>
+    <div className={`flex w-full flex-col gap-4 py-4 ${className}`}>
       <div className="flex flex-col items-start justify-center gap-1">
         <p>Selected Tags</p>
         <AnimatePresence>
